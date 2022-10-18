@@ -23,15 +23,11 @@
     max: 5
   })
 
-  function sortByPrice() {
+  function sorted() {
     store.filteredProducts = [...store.products]
     store.filteredProducts = store.filteredProducts.filter((item) => {
       return item.price >= rangePrice.value[0] && item.price <= rangePrice.value[1]
     })
-  }
-
-  function sortByRate() {
-    store.filteredProducts = [...store.products]
     store.filteredProducts = store.filteredProducts.filter((item) => {
       return item.rating.rate >= rangeRate.value[0] && item.rating.rate <= rangeRate.value[1]
     })
@@ -49,7 +45,7 @@
           :max="rangePrice.max" 
           :min="rangePrice.min" 
           class="slider-custom" 
-          @update="sortByPrice"
+          @update="sorted"
         />
       </div>
     </div>
@@ -62,7 +58,7 @@
           :max="rangeRate.max" 
           :min="rangeRate.min" 
           class="slider-custom"
-          @update="sortByRate"
+          @update="sorted"
         />
       </div>
     </div>
