@@ -9,16 +9,24 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "normalize.css": "^8.0.1",
+    "pinia": "^2.0.22",
+    "sanitize.css": "^13.0.0",
     "vue": "^3.2.13",
-    "vue-router": "^4.0.3"
+    "vue-axios": "^3.4.1",
+    "vue-router": "^4.0.3",
+    "vue-slider-component": "^3.2.20",
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@vueform/slider": "^2.1.5",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-typescript": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
     "eslint": "^7.32.0",

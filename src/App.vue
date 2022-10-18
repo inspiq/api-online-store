@@ -1,30 +1,37 @@
+<script setup lang="ts">
+</script>
+
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  @import "assets/vars/vars.scss";
 
-nav {
-  padding: 30px;
+  * {
+    font-family: $font-family-body;
+  }
 
   a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+    text-decoration: none;
   }
-}
+
+  p, h1, h2, h3, h4 {
+    margin: 0px;
+  }
+
+  button {
+    padding: 0;
+  }
+  
+  body {
+    background: $white;
+    position: relative;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 </style>

@@ -1,0 +1,42 @@
+// FONT FAMILY
+$font-family-body: "Google Sans";
+ 
+// CONTAINER
+$w-container: 1440px; 
+$p-container: 0 64px;
+$p-small-container: 0 32px;
+
+// MARGIN
+$margin-main: 0px 0px 32px 0px;
+
+// FONT WEIGHT
+$regular: 400;
+$medium: 500;
+$bold: 700;
+ 
+// FONT SIZE
+$f-size-delete: 14px;
+$f-size-menu: 14px;
+$f-size-main: 16px;
+$f-size-price-product: 16px;
+$f-size-title-product: 18px;
+$f-size-title: 24px;
+$f-size-medium: 36px;
+$f-size-big: 56px;
+$f-size-degree: 129px;
+ 
+// COLORS
+$black: #000;
+$white: #fff;
+$grey: rgba(0, 0, 0, 0.65);
+$dark-grey: rgba(0, 0, 0, 0.75);
+$grey-checkbox: rgba(0, 0, 0, 0.15);
+$grey-border: rgba(0, 0, 0, 0.15);
+$grey-spinner-bg: rgba(196, 196, 196, 0.3);
+$grey-hr: rgba(0, 0, 0, 0.15);
+$red: #D90429;
+$grey-modal: rgba(0, 0, 0, 0.04);
+
+// MEDIA QUERY
+$small: 500px;
+$medium: 900px;
