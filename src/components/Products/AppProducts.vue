@@ -19,7 +19,7 @@
 
 <template>
   <div class="products">
-    <h1 class="products__title">The new arrivals</h1>
+    <h1 class="products__title">All products</h1>
     <ul class="products__list">
       <AppProduct 
         :show="show" 
