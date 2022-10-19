@@ -1,18 +1,20 @@
+<script setup lang="ts">
+  import AppHeader from '@/components/Header/AppHeader.vue';
+  import AppContent from '@/components/Content/AppContent.vue';
+  import AppSpinner from '@/components/Spinner/AppSpinner.vue';
+  import AppFooter from '@/components/Footer/AppFooter.vue'
+
+  import { useStore } from '@/stores/store'
+
+  const store = useStore()
+</script>
+
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+  <AppHeader />
+  <AppContent />
+  <AppSpinner v-if="store.isLoading" />
+  <AppFooter />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-
-export default defineComponent({
-  name: 'HomeView',
-  components: {
-    HelloWorld,
-  },
-});
-</script>
+<style lang="scss" scoped>
+</style>
