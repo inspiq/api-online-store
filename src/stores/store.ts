@@ -22,6 +22,7 @@ export const useStore = defineStore("store", {
         .get('https://fakestoreapi.com/products/')
         .then((res) => {
           this.products = res.data
+          this.filteredProducts = [...this.products]
         })
         .catch(err => console.log(err))
         .finally(() => this.isLoading = false)

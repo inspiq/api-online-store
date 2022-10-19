@@ -34,9 +34,9 @@
         <div class="modal__img">
           <img :src=currentProduct.image alt="Product" width="200">
         </div>
-        <div class="modal__description">
+        <span class="modal__description">
           {{ currentProduct.description }}
-        </div>
+        </span>
         <hr class="modal__hr" />
         <div class="modal__btns">
           <div class="modal__quantity">
