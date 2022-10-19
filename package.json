@@ -14,7 +14,6 @@
     "pinia": "^2.0.22",
     "sanitize.css": "^13.0.0",
     "vue": "^3.2.13",
-    "vue-axios": "^3.4.1",
     "vue-router": "^4.0.3",
     "vue-slider-component": "^3.2.20",
     "vuex": "^4.0.0"
