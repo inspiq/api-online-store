@@ -3,8 +3,10 @@
   import MyButton from '../UI/MyButton.vue'
   import MyQuantity from './MyQuantity.vue'
   import { useStore } from '@/stores/store'
+  import { storeToRefs } from 'pinia';
 
   const store = useStore()
+  const { currentProduct } = storeToRefs(store)
 
   const props = defineProps({
     show: {
@@ -25,31 +27,31 @@
 <template>
   <div class="modal" v-if="props.show" @click="hideModal">
     <div @click.stop class="modal__body">
-        <div>
-          <h1 class="modal__title">{{ store.currentProduct.title }}</h1>
-          <p class="modal__price">{{ Math.round(store.currentProduct.price) }}$</p>
+        <div class="modal__product-info">
+          <h1 class="modal__title">{{ currentProduct.title }}</h1>
+          <p class="modal__price">{{ Math.round(currentProduct.price) }}$</p>
         </div>
         <div class="modal__img">
-          <img :src=store.currentProduct.image alt="Product" width="200">
+          <img :src=currentProduct.image alt="Product" width="200">
         </div>
         <div class="modal__description">
-          {{ store.currentProduct.description }}
+          {{ currentProduct.description }}
         </div>
         <hr class="modal__hr" />
         <div class="modal__btns">
           <div class="modal__quantity">
-            <my-quantity />
+            <MyQuantity />
           </div>
-          <my-button>
+          <MyButton>
             Add to cart
-          </my-button>
+          </MyButton>
         </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/vars/vars.scss";
+@import "@/assets/vars/vars.scss";
 
   .modal {
     position: fixed;

@@ -2,10 +2,12 @@
   import { ref, onMounted } from 'vue'
   import axios from 'axios'
   import { useStore } from '@/stores/store'
+  import { storeToRefs } from 'pinia';
 
   const store = useStore()
+  const { filteredProducts, products } = storeToRefs(store)
 
-  let catArr = ref<string[]>([])
+  const catArr = ref<string[]>([])
 
   onMounted(() => {
     axios
@@ -14,10 +16,7 @@
       .catch(err => console.log(err))
   })
 
-  function sortByCategory(cat: string) {
-    store.filteredProducts = [...store.products]
-    store.filteredProducts = store.filteredProducts.filter((x) => x.category === cat)
-  }
+  const sortByCategory = (cat: string) => filteredProducts.value = products.value.filter((x) => x.category === cat)
 </script>
 
 <template>
@@ -30,7 +29,7 @@
 
 <style lang="scss" scoped>
 .nav {
-  @import "../../assets/vars/vars.scss";
+  @import "@/assets/vars/vars.scss";
 
   &__link {
     display: block;

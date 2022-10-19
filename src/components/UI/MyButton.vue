@@ -8,7 +8,8 @@
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/vars/vars.scss";
+@import "@/assets/vars/vars.scss";
+
 .btn {
   padding: 10px 24px;
   background: $red;

@@ -6,15 +6,15 @@
 
 <template>
   <div class="content">
-    <app-container>
-      <side-bar></side-bar>
-      <app-products></app-products>
-    </app-container>
+    <AppContainer>
+      <SideBar></SideBar>
+      <AppProducts></AppProducts>
+    </AppContainer>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/vars/vars.scss";
+@import "@/assets/vars/vars.scss";
 
 .content {
   padding-top: 80px;

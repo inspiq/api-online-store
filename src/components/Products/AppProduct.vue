@@ -2,20 +2,20 @@
   import { defineProps, defineEmits } from 'vue'
   import { Product } from '../../types/interfaces'
   import { useStore } from '@/stores/store'
+  import { storeToRefs } from 'pinia';
+
+  type TProps = { product: Product }
 
   const store = useStore()
+  const { currentProduct } = storeToRefs(store)
 
-  const props = defineProps<{
-    product: Product
-  }>();
+  const props = defineProps<TProps>();
 
-  const emit = defineEmits<{
-    (e: 'open'): void
-  }>()
+  const emit = defineEmits(['open'])
 
   function openModal() {
     emit('open')
-    store.currentProduct = props.product
+    currentProduct.value = props.product
   }
 </script>
 
@@ -32,7 +32,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/vars/vars.scss";
+@import "@/assets/vars/vars.scss";
 
 .products {
   &__item {

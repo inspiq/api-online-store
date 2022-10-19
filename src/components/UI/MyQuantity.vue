@@ -1,23 +1,20 @@
 <script lang="ts" setup>
-  import { useStore } from '@/stores/store'
-
-  const store = useStore()
 </script>
 
 <template>
   <div class="quantity">
     <button type="button" class="quantity__btn-minus">
-      <img src="../../assets/images/icons/minus.png" alt="Minus" width="18">
+      <img src="@/assets/images/icons/minus.png" alt="Minus" width="18">
     </button>
     <button class="quantity__number">{{ 1 }}</button>
     <button type="button" class="quantity__btn-plus">
-      <img src="../../assets/images/icons/plus.png" alt="Plus" width="18">
+      <img src="@/assets/images/icons/plus.png" alt="Plus" width="18">
     </button>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/vars/vars.scss";
+@import "@/assets/vars/vars.scss";
 
   .quantity {
     display: flex;

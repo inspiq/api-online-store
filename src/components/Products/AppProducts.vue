@@ -3,13 +3,16 @@
   import MyModal from '@/components/UI/MyModal.vue';
   import { ref, onMounted } from 'vue'
   import { useStore } from '@/stores/store'
+  import { storeToRefs } from 'pinia';
 
   const store = useStore()
+  const { filteredProducts } = storeToRefs(store)
+  const { getProducts } = store
 
   let show = ref(false);
 
   onMounted(() => {
-    store.getProducts()
+    getProducts()
   })
 
 </script>
@@ -18,15 +21,15 @@
   <div class="products">
     <h1 class="products__title">The new arrivals</h1>
     <ul class="products__list">
-      <app-product 
+      <AppProduct 
         :show="show" 
         @open="show = true"
-        v-for="product in store.filteredProducts" 
+        v-for="product in filteredProducts"
         :key="product.id"
         :product="product"
       />
     </ul>
-    <my-modal 
+    <MyModal
       :show="show"
       @close="show = false"
     />
@@ -34,7 +37,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/vars/vars.scss";
+@import "@/assets/vars/vars.scss";
 
 .products {
   padding: 32px 0px 0px 0px;

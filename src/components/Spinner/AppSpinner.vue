@@ -10,7 +10,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/vars/vars.scss";
+@import "@/assets/vars/vars.scss";
 
 .spinner {
   position: absolute;

@@ -4,8 +4,10 @@
   import MyHr from '../UI/MyHr.vue'
   import '@vueform/slider/themes/default.css'
   import { useStore } from '@/stores/store'
+  import { storeToRefs } from 'pinia';
 
   const store = useStore()
+  const { filteredProducts, products } = storeToRefs(store)
 
   const rangePrice = reactive({ 
     value: [8, 1000],
@@ -23,15 +25,11 @@
     max: 5
   })
 
-  function sorted() {
-    store.filteredProducts = [...store.products]
-    store.filteredProducts = store.filteredProducts.filter((item) => {
-      return item.price >= rangePrice.value[0] && item.price <= rangePrice.value[1]
+  const handleSort = () => filteredProducts.value = products.value.filter((item) => {
+      const isAllowPrice = item.price >= rangePrice.value[0] && item.price <= rangePrice.value[1]
+      const isAllowRate = item.rating.rate >= rangeRate.value[0] && item.rating.rate <= rangeRate.value[1]
+      return isAllowRate && isAllowPrice
     })
-    store.filteredProducts = store.filteredProducts.filter((item) => {
-      return item.rating.rate >= rangeRate.value[0] && item.rating.rate <= rangeRate.value[1]
-    })
-  }
 </script>
 
 <template>
@@ -45,11 +43,11 @@
           :max="rangePrice.max" 
           :min="rangePrice.min" 
           class="slider-custom" 
-          @update="sorted"
+          @update="handleSort"
         />
       </div>
     </div>
-    <my-hr />
+    <MyHr />
     <div class="sidebar__filter">
       <p class="sidebar__title">Rating range</p>
       <div class="sidebar__range-slider">
@@ -58,7 +56,7 @@
           :max="rangeRate.max" 
           :min="rangeRate.min" 
           class="slider-custom"
-          @update="sorted"
+          @update="handleSort"
         />
       </div>
     </div>
@@ -66,7 +64,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/vars/vars.scss";
+@import "@/assets/vars/vars.scss";
 
 .sidebar {
   max-width: 320px;

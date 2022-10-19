@@ -6,7 +6,8 @@
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/vars/vars.scss";
+@import "@/assets/vars/vars.scss";
+
   .hr {
     margin-top: 32px;
     margin-bottom: 0px;

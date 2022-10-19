@@ -10,10 +10,10 @@
 </script>
 
 <template>
-  <app-header />
-  <app-content />
-  <app-spinner v-if="store.isLoading" />
-  <app-footer />
+  <AppHeader />
+  <AppContent />
+  <AppSpinner v-if="store.isLoading" />
+  <AppFooter />
 </template>
 
 <style lang="scss" scoped>

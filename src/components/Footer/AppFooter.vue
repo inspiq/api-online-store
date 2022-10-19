@@ -4,7 +4,7 @@
 
 <template>
   <footer class="footer">
-    <app-container>
+    <AppContainer>
       <div class="footer__content">
         <div class="footer__contacts">
           <p>Don’t missout on once-in-a-while-deals:</p>
@@ -25,12 +25,12 @@
         </div>
         <div class="footer__copyright">Copyright  2021 © API Online Store</div>
       </div>
-    </app-container>
+    </AppContainer>
   </footer>
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/vars/vars.scss";
+@import "@/assets/vars/vars.scss";
 .footer {
   padding: 32px 0px 64px 0px;
   border-top: 1px solid $grey-border;

@@ -8,7 +8,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @import "../../assets/vars/vars.scss";
+@import "@/assets/vars/vars.scss";
   
   .container {
     max-width: $w-container;

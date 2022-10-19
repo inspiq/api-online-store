@@ -7,39 +7,39 @@
 </script> 
 
 <template>
-  <div class="header">
-    <app-container>
+  <header class="header">
+    <AppContainer>
       <div class="header__logo">
         <a href="/">
-          <p>API.</p>
+          <span>API.</span>
         </a>
       </div>
       <nav class="nav">
         <ul class="nav__items">
-          <menu-items />
+          <MenuItems />
         </ul>
       </nav>
       <div class="header__icons">
-        <router-link
+        <RouterLink
           to="/cart"
         >
-          <img src="../../assets/images/icons/fi_shopping-cart.png" alt="Shopping cart" width="24" height="24">
-        </router-link>
+          <img src="@/assets/images/icons/fi_shopping-cart.png" alt="Shopping cart" width="24" height="24">
+        </RouterLink>
         <a href="">
-          <img src="../../assets/images/icons/fi_heart.png" alt="Favorite" width="24" height="24">
+          <img src="@/assets/images/icons/fi_heart.png" alt="Favorite" width="24" height="24">
         </a>
         <a href="">
-          <img src="../../assets/images/icons/fi_user.png" alt="User" width="24" height="24">
+          <img src="@/assets/images/icons/fi_user.png" alt="User" width="24" height="24">
         </a>
       </div>
-    </app-container>
-  </div>
-  <div class="header-small">
-    <app-container>
+    </AppContainer>
+  </header>
+  <header class="header-small">
+    <AppContainer>
       <div class="header-small__logo">
         <a href="">
-          <img src="../../assets/images/logo/logo.png" alt="Logotype" width="32" height="30">
-          <p>SC.</p>
+          <img src="@/assets/images/logo/logo.png" alt="Logotype" width="32" height="30">
+          <span>API.</span>
         </a>
       </div>
       <div class="header-small__burger" @click="menuOpen = true">
@@ -51,34 +51,34 @@
         </div>
         <div class="header-small__btn-close">
           <button type="button" @click="menuOpen = false">
-            <img src="../../assets/images/icons/close.png" alt="Close" width="24" height="24">
+            <img src="@/assets/images/icons/close.png" alt="Close" width="24" height="24">
           </button>
         </div>
         <nav class="nav">
           <ul class="nav__items">
-            <menu-items />
+            <MenuItems />
           </ul>
         </nav>
         <div class="header-small__icons">
-          <router-link
+          <RouterLink
             to="/cart"
           >
-            <img src="../../assets/images/icons/fi_shopping-cart.png" alt="Shopping cart" width="24" height="24">
-          </router-link>
+            <img src="@/assets/images/icons/fi_shopping-cart.png" alt="Shopping cart" width="24" height="24">
+          </RouterLink>
           <a href="">
-            <img src="../../assets/images/icons/fi_heart.png" alt="Favorite" width="24" height="24">
+            <img src="@/assets/images/icons/fi_heart.png" alt="Favorite" width="24" height="24">
           </a>
           <a href="">
-            <img src="../../assets/images/icons/fi_user.png" alt="User" width="24" height="24">
+            <img src="@/assets/images/icons/fi_user.png" alt="User" width="24" height="24">
           </a>
         </div>
       </div>
-    </app-container>
-  </div>
+    </AppContainer>
+  </header>
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/vars/vars.scss";
+@import "@/assets/vars/vars.scss";
 
 .header {
   position: fixed;
@@ -106,7 +106,7 @@
     align-items: center;
   }
 
-  &__logo > a > p {
+  &__logo > a > span {
     font-size: $f-size-medium;
     color: $black;
     font-weight: $bold;
@@ -200,7 +200,7 @@
     align-items: center;
   }
 
-  &__logo > a > p {
+  &__logo > a > span {
     font-size: $f-size-medium;
     color: $black;
     font-weight: $bold;
