@@ -20,7 +20,7 @@
 </script>
 
 <template>
-  <li class="products__item" @click="openModal">
+  <li class="products__item" @click="openModal()">
     <div class="products__img">
       <img :src=props.product.image alt="Товар" width="150">
     </div>

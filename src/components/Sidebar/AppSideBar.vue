@@ -43,7 +43,7 @@
           :max="rangePrice.max" 
           :min="rangePrice.min" 
           class="slider-custom" 
-          @update="handleSort"
+          @update="handleSort()"
         />
       </div>
     </div>
@@ -56,7 +56,7 @@
           :max="rangeRate.max" 
           :min="rangeRate.min" 
           class="slider-custom"
-          @update="handleSort"
+          @update="handleSort()"
         />
       </div>
     </div>

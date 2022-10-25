@@ -22,7 +22,6 @@
     <h1 class="products__title">All products</h1>
     <ul class="products__list">
       <AppProduct 
-        :show="show" 
         @open="show = true"
         v-for="product in filteredProducts"
         :key="product.id"
