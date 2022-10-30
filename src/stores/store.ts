@@ -9,7 +9,6 @@ interface State {
   totalPrice: number
   currentProduct: Product
   filteredProducts: Product[]
-  qty: number
 }
 
 const cart = window.localStorage.getItem('cart');
@@ -22,8 +21,7 @@ export const useStore = defineStore("store", {
     cart: cart ? JSON.parse(cart) : [],
     isLoading: true,
     currentProduct: null,
-    totalPrice: totalPrice ? parseInt(totalPrice) : 0,
-    qty: 0
+    totalPrice: totalPrice ? parseInt(totalPrice) : 0
   } as State),
   actions: {
     async getProducts() {
