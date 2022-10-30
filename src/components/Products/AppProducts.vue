@@ -14,7 +14,6 @@
   onMounted(() => {
     getProducts()
   })
-
 </script>
 
 <template>

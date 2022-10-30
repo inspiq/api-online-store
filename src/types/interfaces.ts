@@ -7,7 +7,6 @@ export interface Product {
   rating: Rating
   category: string
   currentProduct: number
-  qty: number
 }
 
 export interface Cart {
@@ -15,8 +14,8 @@ export interface Cart {
   image: string
   title: string
   description: string
+  rating: Rating
   price: number
-  qty: number
 }
 
 export interface Rating {

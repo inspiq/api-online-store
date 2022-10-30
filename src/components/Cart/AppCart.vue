@@ -1,15 +1,14 @@
 <script lang="ts" setup>
   import AppContainer from '../Container/AppContainer.vue'
+  import CartItems from './CartItems.vue'
   import MyHr from '../UI/MyHr.vue'
   import MyButton from '../UI/MyButton.vue'
-  import MyQuantity from '../UI/MyQuantity.vue'
   import { useStore } from '@/stores/store'
   import { storeToRefs } from 'pinia'
 
   const store = useStore()
 
   const { cart, totalPrice } = storeToRefs(store)
-  const { deleteEvent } = store
 </script>
 
 <template>
@@ -20,21 +19,7 @@
           <h2 class="cart__title">Your shopping cart</h2>
           <p class="cart__empty" v-if="cart.length < 1">The basket is empty :(</p>
           <ul class="cart__products" v-else>
-            <li v-for="item in cart" :key="item.id" class="cart__product">
-              <div class="cart__product-img">
-                <img :src=item.image alt="Product" width="50">
-              </div>
-              <div class="cart__product-info">
-                <h3>{{ item.title }}</h3>
-                <p>{{ Math.round(item.price) }}$</p>
-              </div>
-              <div class="cart__product-quantity">
-                <MyQuantity :item="item" />
-                <div class="cart__product-delete">
-                  <button type="button" @click="deleteEvent(item)">Удалить</button>
-                </div>
-              </div>
-            </li>
+            <CartItems v-for="item in cart" :key="item.id" :item="item" />
           </ul>
         </div>
         <div class="cart__content">
@@ -101,43 +86,6 @@
     gap: 15px;
   }
 
-  &__product {
-    background: $grey-modal;
-    max-width: 880px;
-    width: 100%;
-    padding: 24px 32px; 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    
-    @media screen and (max-width: $medium) {
-      flex-direction: column;
-      text-align: center;
-      gap: 25px;
-    }
-  }
-
-  &__product-info {
-    margin-left: 20px;
-
-    @media screen and (max-width: $medium) {
-      margin: 0;
-    }
-  }
-
-  &__product-info h3 {
-    color: $black;
-    font-weight: $regular;
-    font-size: $f-size-title-product;
-    margin-bottom: 5px;
-  }
-
-  &__product-info p {
-    color: $grey;
-    font-weight: $regular;
-    font-size: $f-size-price-product;
-  }
-
   &__price-info {
     width: 368px;
 
@@ -145,16 +93,6 @@
       max-width: 368px;
       width: 100%;
     }
-  }
-
-  &__product-img {
-    width: 90px;
-    height: 90px;
-    background: $white;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   &__price-info > p {
@@ -224,30 +162,6 @@
 
   &__btn {
     margin-top: 64px;
-  }
-
-  &__product-quantity {
-    margin: 0 0 0 50px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-
-    @media screen and (max-width: $medium) {
-      margin: 0;
-    }
-  }
-
-  &__product-delete > button {
-    background: none;
-    outline: none;
-    border: none;
-    color: $grey;
-    font-size: $f-size-delete;
-    font-weight: $regular;
-    cursor: pointer;
-    color: $red;
   }
 }
 </style>

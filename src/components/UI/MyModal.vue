@@ -1,7 +1,6 @@
 <script lang="ts" setup>
   import { defineProps, defineEmits, ref } from 'vue'
   import MyButton from '../UI/MyButton.vue'
-  import MyQuantity from './MyQuantity.vue'
   import { useStore } from '@/stores/store'
   import { storeToRefs } from 'pinia';
 
@@ -46,10 +45,7 @@
           </p>
         </div>
         <hr class="modal__hr" />
-        <div class="modal__btns">
-          <div class="modal__quantity">
-            <MyQuantity />
-          </div>
+        <div class="modal__btn">
           <MyButton @click="addProduct(currentProduct)">
             Add to cart
           </MyButton>
@@ -125,12 +121,7 @@
       margin-top: 18px;
     }
 
-    &__quantity {
-      display: flex;
-      flex-direction: row;
-    }
-
-    &__btns {
+    &__btn {
       display: flex;
       flex-direction: row;
       gap: 32px;

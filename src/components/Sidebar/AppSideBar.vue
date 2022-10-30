@@ -2,9 +2,10 @@
   import { reactive } from 'vue';
   import Slider from '@vueform/slider'
   import MyHr from '../UI/MyHr.vue'
-  import '@vueform/slider/themes/default.css'
   import { useStore } from '@/stores/store'
   import { storeToRefs } from 'pinia';
+  
+  import '@vueform/slider/themes/default.css'
 
   const store = useStore()
   const { filteredProducts, products } = storeToRefs(store)
@@ -13,7 +14,7 @@
     value: [8, 1000],
     format: {
       suffix: '$',
-      thousand: ","
+      decimals: 0
     },
     min: 8,
     max: 1000
@@ -21,15 +22,18 @@
 
   const rangeRate = reactive({ 
     value: [1, 5],
+    format: {
+      suffix: '⭐'
+    },
     min: 1,
     max: 5
   })
 
   const handleSort = () => filteredProducts.value = products.value.filter((item) => {
-      const isAllowPrice = item.price >= rangePrice.value[0] && item.price <= rangePrice.value[1]
-      const isAllowRate = item.rating.rate >= rangeRate.value[0] && item.rating.rate <= rangeRate.value[1]
-      return isAllowRate && isAllowPrice
-    })
+    const isAllowPrice = item.price >= rangePrice.value[0] && item.price <= rangePrice.value[1]
+    const isAllowRate = item.rating.rate >= rangeRate.value[0] && item.rating.rate <= rangeRate.value[1]
+    return isAllowRate && isAllowPrice
+  })
 </script>
 
 <template>

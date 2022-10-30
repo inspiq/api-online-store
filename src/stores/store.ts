@@ -13,7 +13,6 @@ interface State {
 }
 
 const cart = window.localStorage.getItem('cart');
-const qty = window.localStorage.getItem('qty');
 const totalPrice = window.localStorage.getItem('totalPrice');
 
 export const useStore = defineStore("store", {
@@ -24,7 +23,7 @@ export const useStore = defineStore("store", {
     isLoading: true,
     currentProduct: null,
     totalPrice: totalPrice ? parseInt(totalPrice) : 0,
-    qty: qty ? parseInt(qty) : 1,
+    qty: 0
   } as State),
   actions: {
     async getProducts() {
@@ -35,41 +34,44 @@ export const useStore = defineStore("store", {
           this.filteredProducts = [...this.products]
         })
         .catch(err => console.log(err))
-        .finally(() => this.isLoading = false)
+        .finally(() => {
+          this.isLoading = false
+        })
     },
     addProduct(currentProduct: Cart) {
       const found = this.cart.find(item => item.id === currentProduct.id);
 
-      if (found) {
-        this.qty++
-        this.totalPrice = this.totalPrice + currentProduct.price
+      if (!found) {
+        this.cart.push({...currentProduct, rating: {count: 1, rate: currentProduct.rating.rate}})
+        this.totalPrice += currentProduct.price * 1
       } else {
-        this.cart.push(currentProduct)
-        this.totalPrice = this.totalPrice + currentProduct.price * this.qty
+        found.rating.count++
+        this.totalPrice += found.price
       }
 
       window.localStorage.setItem('cart', JSON.stringify(this.cart));
       window.localStorage.setItem('totalPrice', "" + this.totalPrice);
     },
-    increment(item: { price: number }) {
-      if (this.currentProduct.rating.count >= this.qty) {
-        this.qty++
-        this.totalPrice = this.totalPrice + item.price
+    increment(item: { rating: { count: number }; price: number }) {
+      item.rating.count++
+      this.totalPrice += item.price
+      
+      window.localStorage.setItem('totalPrice', "" + this.totalPrice);
+      window.localStorage.setItem('cart', JSON.stringify(this.cart));
+    },
+    decrement(item: { rating: { count: number }; price: number }) {
+      if (item.rating.count > 1) {
+        item.rating.count--
+        this.totalPrice -= item.price
+
         window.localStorage.setItem('totalPrice', "" + this.totalPrice);
-        window.localStorage.setItem('qty', "" + this.qty);
+        window.localStorage.setItem('cart', JSON.stringify(this.cart));
       }
     },
-    decrement(item: { price: number }) {
-      if (this.qty > 1) {
-        this.qty--
-        this.totalPrice = this.totalPrice - item.price
-        window.localStorage.setItem('totalPrice', "" + this.totalPrice);
-        window.localStorage.setItem('qty', "" + this.qty);
-      }
-    },
-    deleteEvent(item: number | any) {
+    deleteEvent(item: { price: number } | any) {
       this.cart.splice(item, 1);
-      this.totalPrice = this.totalPrice - item.price * this.qty
+      this.totalPrice -= item.price * item.rating.count
+      
       window.localStorage.setItem('cart', JSON.stringify(this.cart));
       window.localStorage.setItem('totalPrice', "" + this.totalPrice);
     }

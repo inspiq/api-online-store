@@ -1,17 +1,14 @@
 <script lang="ts" setup>
   import { useStore } from '@/stores/store'
   import { Cart } from '@/types/interfaces';
-  import { storeToRefs } from 'pinia';
   import { defineProps } from 'vue'
-
-  const store = useStore()
-  const { qty } = storeToRefs(store)
-  const { increment, decrement } = store
 
   type TProps = { item: Cart }
 
-  const props = defineProps<TProps>();
+  const store = useStore()
+  const { increment, decrement } = store
 
+  const props = defineProps<TProps>(); 
 </script>
 
 <template>
@@ -19,7 +16,7 @@
     <button type="button" class="quantity__btn-minus" @click="decrement(props.item)">
       <img src="@/assets/images/icons/minus.png" alt="Minus" width="18">
     </button>
-    <input class="quantity__number" type="text" v-model="qty">
+    <button class="quantity__number" type="button">{{ item.rating.count }}</button>
     <button type="button" class="quantity__btn-plus" @click="increment(props.item)">
       <img src="@/assets/images/icons/plus.png" alt="Plus" width="18">
     </button>
