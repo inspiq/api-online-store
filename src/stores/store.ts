@@ -19,10 +19,6 @@ export const useStore = defineStore("store", {
     cart: cart ? JSON.parse(cart) : [],
     isLoading: true,
     currentProduct: null,
-<<<<<<< HEAD
-=======
-    totalPrice: totalPrice ? parseInt(totalPrice) : 0
->>>>>>> 4ccf926a9cf9d24c46528f31cf7583b1b1e9e709
   } as State),
   getters: {
     getTotalPrice(state) {
