@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import { ref } from 'vue';
-  import AppContainer from '../Container/AppContainer.vue'
+  import AppContainer from '@/components/Container/AppContainer.vue'
   import MenuItems from './MenuItems.vue';
 
   const menuOpen = ref(false)

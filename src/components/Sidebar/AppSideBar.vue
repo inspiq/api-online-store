@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import { reactive } from 'vue';
   import Slider from '@vueform/slider'
-  import MyHr from '../UI/MyHr.vue'
+  import MyHr from '@/components/UI/MyHr.vue'
   import { useStore } from '@/stores/store'
   import { storeToRefs } from 'pinia';
   

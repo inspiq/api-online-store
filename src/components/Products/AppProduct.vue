@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import { defineProps, defineEmits } from 'vue'
-  import { Product } from '../../types/interfaces'
+  import { Product } from '@/types/interfaces'
   import { useStore } from '@/stores/store'
   import { storeToRefs } from 'pinia';
 

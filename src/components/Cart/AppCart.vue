@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-  import AppContainer from '../Container/AppContainer.vue'
+  import AppContainer from '@/components/Container/AppContainer.vue'
   import CartItems from './CartItems.vue'
-  import MyHr from '../UI/MyHr.vue'
-  import MyButton from '../UI/MyButton.vue'
+  import MyHr from '@/components/UI/MyHr.vue'
+  import MyButton from '@/components/UI/MyButton.vue'
   import { useStore } from '@/stores/store'
   import { storeToRefs } from 'pinia'
 
   const store = useStore()
 
-  const { cart, totalPrice } = storeToRefs(store)
+  const { cart } = storeToRefs(store)
 </script>
 
 <template>
@@ -27,18 +27,20 @@
           <div class="cart__price-info">
             <div class="cart__total-price">
               <p>Sub total</p>
-              <p>{{ Math.round(totalPrice) }}$</p>
+              <p>{{ store.getTotalPrice }}$</p>
             </div>
-            <div class="cart__delivery" v-if="totalPrice < 100">
-              <p>Delivery paid</p>
-              <p>10$</p>
-            </div>
-            <div class="cart__delivery" v-else>
-              <p>Delivery free</p>
-              <p>0$</p>
+            <div class="cart__delivery">
+              <template v-if="store.getTotalPrice < 100">
+                <p>Delivery paid</p>
+                <p>10$</p>
+              </template>
+              <template v-else>
+                <p>Delivery free</p>
+                <p>0$</p>
+              </template>
             </div>
             <MyHr />
-            <p>{{ Math.round(totalPrice) }}$</p>
+            <p>{{ store.getTotalPrice }}$</p>
             <div class="cart__btn">
               <MyButton>
                 Proceed to checkout
@@ -52,10 +54,12 @@
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/vars/vars.scss";
+@import "@/assets/vars/vars.scss";
 
 .cart {
   padding-top: 80px;
+  padding-bottom: 80px;
+  min-height: calc(100vh - 129px);
 
   & > .container {
     display: flex;
@@ -65,7 +69,7 @@
   &__content-list {
     display: flex;
     flex-direction: row;
-    gap: 64px;
+    justify-content: space-between;
 
     @media screen and (max-width: $small) {
       flex-direction: column;
