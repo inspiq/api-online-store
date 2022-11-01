@@ -12,12 +12,14 @@
   const { deleteEvent } = store
   const { cart } = storeToRefs(store)
 
-  function onIncrement(item: { rating: { count: number; }; }) {
+  function onIncrement(id: number) {
+    const item = cart.value.find((item) => item.id === id)
     item.rating.count++
     window.localStorage.setItem('cart', JSON.stringify(cart.value));
   }
 
-  function onDecrement(item: { rating: { count: number; }; }) {
+  function onDecrement(id: number) {
+    const item = cart.value.find((item) => item.id === id)
     if (item.rating.count > 1) {
       item.rating.count--
       window.localStorage.setItem('cart', JSON.stringify(cart.value));
@@ -37,17 +39,14 @@
       </div>
     </div>
     <div class="cart__product-quantity">
-      <MyQuantity>
-        <button type="button" class="quantity__btn-minus" @click="onDecrement(props.item)">
-          <img src="@/assets/images/icons/minus.png" alt="Minus" width="18">
-        </button>
-        <button class="quantity__number" type="button">{{ item.rating.count }}</button>
-        <button type="button" class="quantity__btn-plus" @click="onIncrement(props.item)">
-          <img src="@/assets/images/icons/plus.png" alt="Plus" width="18">
-        </button>
-      </MyQuantity>
+      <MyQuantity 
+        :id="props.item.id"
+        :quantity="props.item.rating.count"
+        @onDecrement="onIncrement"
+        @onIncrement="onDecrement"
+      />
       <div class="cart__product-delete">
-        <button type="button" @click="deleteEvent(props.item)">Удалить</button>
+        <button type="button" @click="deleteEvent(props.item.id)">Удалить</button>
       </div>
     </div>
   </li>
@@ -141,32 +140,6 @@
     font-weight: $regular;
     cursor: pointer;
     color: $red;
-  }
-}
-
-.quantity {
-  &__btn-plus {
-    background: none;
-    outline: none;
-    border: 0;
-    cursor: pointer;
-  }
-    
-  &__btn-minus {
-    background: none;
-    outline: none;
-    border: 0;
-    cursor: pointer;
-  }
-
-  &__number {
-    width: 48px;
-    height: 48px;
-    border: 1px solid $grey;
-    border-radius: 8px;
-    outline: none;
-    text-align: center;
-    background: none;
   }
 }
 </style>

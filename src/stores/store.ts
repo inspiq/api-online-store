@@ -50,9 +50,10 @@ export const useStore = defineStore("store", {
       }
       window.localStorage.setItem('cart', JSON.stringify(this.cart));
     },
-    deleteEvent(item: number) {
-      this.cart.splice(item, 1);
+    deleteEvent(id: number) {
+      this.cart = this.cart.filter((e) => e.id !== id )
       window.localStorage.setItem('cart', JSON.stringify(this.cart));
     }
   }
 })
+

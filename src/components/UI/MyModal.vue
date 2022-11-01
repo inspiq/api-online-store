@@ -3,7 +3,7 @@
 
   type TProps = { isShow: boolean }
 
-  const props = defineProps<TProps>();
+  defineProps<TProps>();
 
   const emit = defineEmits(['close'])
 
@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <div class="modal" v-if="props.isShow" @click="hideModal()">
+  <div class="modal" v-if="isShow" @click="hideModal()">
     <slot />
   </div>
 </template>
