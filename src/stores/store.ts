@@ -22,8 +22,8 @@ export const useStore = defineStore("store", {
   } as State),
   getters: {
     getTotalPrice(state) {
-      return state.cart.reduce((a, b) => {
-        return Math.round(a += b.price * b.rating.count)
+      return state.cart.reduce((totalPrice, product) => {
+        return Math.round(totalPrice += product.price * product.rating.count)
       }, 0)
     }
   },
