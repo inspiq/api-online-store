@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import { defineProps, defineEmits } from 'vue'
-  import { Product } from '../../types/interfaces'
+  import { Product } from '@/types/interfaces'
   import { useStore } from '@/stores/store'
   import { storeToRefs } from 'pinia';
 
@@ -20,7 +20,7 @@
 </script>
 
 <template>
-  <li class="products__item" @click="openModal">
+  <li class="products__item" @click="openModal()">
     <div class="products__img">
       <img :src=props.product.image alt="Товар" width="150">
     </div>

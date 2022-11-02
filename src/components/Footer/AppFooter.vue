@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import AppContainer from '../Container/AppContainer.vue';
+  import AppContainer from '@/components/Container/AppContainer.vue';
 </script>
 
 <template>
@@ -20,7 +20,7 @@
             </a>
           </div>
         </div>
-        <div>
+        <div class="footer__support">
           <p>Support line: +250 788 467 808</p>
         </div>
         <div class="footer__copyright">Copyright  2021 © API Online Store</div>
@@ -34,9 +34,8 @@
 .footer {
   padding: 32px 0px 64px 0px;
   border-top: 1px solid $grey-border;
-  margin-top: 92px;
 
-  @media screen and (max-width: $small) {
+  @media screen and (max-width: $medium) {
     padding: 32px 0px 32px 0px;
   }
 
@@ -46,7 +45,7 @@
     flex-direction: row;
     align-items: center;
 
-    @media screen and (max-width: $small) {
+    @media screen and (max-width: $medium) {
       flex-direction: column;
       gap: 20px;
     }
@@ -58,12 +57,23 @@
     align-items: center;
     gap: 12px;
 
-    @media screen and (max-width: $small) {
+    @media screen and (max-width: $medium) {
       flex-direction: column;
+    }
+
+    @media screen and (min-width: $medium) and (max-width: $big) {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 
-  &__contacts p {
+  &__support > p {
+    color: $grey;
+    font-weight: $regular;
+    font-size: $f-size-main;
+  }
+
+  &__contacts > p {
     color: $grey;
     font-weight: $regular;
     font-size: $f-size-main;

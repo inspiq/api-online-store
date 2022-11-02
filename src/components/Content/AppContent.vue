@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-  import AppContainer from '../Container/AppContainer.vue'
-  import AppProducts from '../Products/AppProducts.vue';
-  import SideBar from '../Sidebar/AppSideBar.vue';
+  import AppContainer from '@/components/Container/AppContainer.vue'
+  import AppProducts from '@/components/Products/AppProducts.vue';
+  import SideBar from '@/components/Sidebar/AppSideBar.vue';
 </script>
 
 <template>
@@ -18,6 +18,9 @@
 
 .content {
   padding-top: 80px;
+  padding-bottom: 100px;
+  min-height: calc(100vh - 129px);
+
   & > .container {
     padding: 0px 64px 0px 32px;
     display: flex;

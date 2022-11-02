@@ -1,21 +1,32 @@
 import { defineStore } from 'pinia'
-import { Product } from '../types/interfaces'
+import { Product, Cart } from '../types/interfaces'
 import axios from 'axios'
 
 interface State {
+  cart: Cart[]
   products: Product[]
   isLoading: boolean
-  filteredProducts: Product[]
   currentProduct: Product
+  filteredProducts: Product[]
 }
+
+const cart = window.localStorage.getItem('cart');
 
 export const useStore = defineStore("store", {
   state: () => ({
     products: [],
     filteredProducts: [],
+    cart: cart ? JSON.parse(cart) : [],
     isLoading: true,
-    currentProduct: null
+    currentProduct: null,
   } as State),
+  getters: {
+    getTotalPrice(state) {
+      return state.cart.reduce((totalPrice, product) => {
+        return Math.round(totalPrice += product.price * product.rating.count)
+      }, 0)
+    }
+  },
   actions: {
     async getProducts() {
       axios
@@ -25,7 +36,24 @@ export const useStore = defineStore("store", {
           this.filteredProducts = [...this.products]
         })
         .catch(err => console.log(err))
-        .finally(() => this.isLoading = false)
+        .finally(() => {
+          this.isLoading = false
+        })
+    },
+    addProduct(currentProduct: Cart) {
+      const found = this.cart.find(item => item.id === currentProduct.id);
+
+      if (!found) {
+        this.cart.push({...currentProduct, rating: {count: 1, rate: currentProduct.rating.rate}})
+      } else {
+        found.rating.count++
+      }
+      window.localStorage.setItem('cart', JSON.stringify(this.cart));
+    },
+    deleteEvent(id: number) {
+      this.cart = this.cart.filter((e) => e.id !== id )
+      window.localStorage.setItem('cart', JSON.stringify(this.cart));
     }
   }
 })
+
