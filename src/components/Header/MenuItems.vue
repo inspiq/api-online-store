@@ -3,10 +3,12 @@
   import axios from 'axios'
   import { useStore } from '@/stores/store'
   import { storeToRefs } from 'pinia';
+  import { useRouter } from 'vue-router';
 
   const store = useStore()
-  const { filteredProducts, products } = storeToRefs(store)
+  const { filteredProducts, products, isLoading } = storeToRefs(store)
 
+  const router = useRouter()
   const catArr = ref<string[]>([])
 
   onMounted(() => {
@@ -16,7 +18,14 @@
       .catch(err => console.log(err))
   })
 
-  const sortByCategory = (cat: string) => filteredProducts.value = products.value.filter((x) => x.category === cat)
+  const sortByCategory = (cat: string) => {
+    router.push('/')
+    setTimeout(() => {
+      filteredProducts.value = products.value.filter((x) => x.category === cat)
+      isLoading.value = false
+    }, 300);
+    isLoading.value = true
+  }
 </script>
 
 <template>

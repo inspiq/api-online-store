@@ -6,8 +6,8 @@
   import { storeToRefs } from 'pinia';
 
   type TProps = { item: Cart }
+
   const props = defineProps<TProps>();
-    
   const store = useStore()
   const { deleteEvent } = store
   const { cart } = storeToRefs(store)

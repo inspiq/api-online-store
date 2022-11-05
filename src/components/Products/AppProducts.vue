@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import AppProduct from './AppProduct.vue';
   import MyModal from '@/components/UI/MyModal.vue';
+  import MyNotification from '@/components/UI/MyNotification.vue';
   import MyButton from '@/components/UI/MyButton.vue'
   import { ref, onMounted } from 'vue'
   import { useStore } from '@/stores/store'
@@ -11,12 +12,12 @@
   const { getProducts, addProduct } = store
 
   const isShow = ref(false);
+  const isNotification = ref(false);
+  const isOpenAccordion = ref(false)
 
   onMounted(() => {
     getProducts()
   })
-
-  const isOpenAccordion = ref(false)
 </script>
 
 <template>
@@ -57,12 +58,50 @@
         </div>
         <hr class="modal__hr" />
         <div class="modal__btn">
-          <MyButton @click="addProduct(currentProduct)">
+          <MyButton @click="addProduct(currentProduct); isShow = false; isNotification = true;">
             Add to cart
           </MyButton>
         </div>
       </div>
     </MyModal>
+    <MyNotification
+      :isNotification="isNotification"
+      @close="isNotification = false"
+    >
+      <div @click.stop class="notification__body">
+        <button class="notification__close" @click="isNotification = false">
+          <img src="@/assets/images/icons/close.png" alt="Close" width="16">
+        </button>
+        <h3 class="notification__title">The product has been added to the cart!</h3>
+        <div class="notification__product">
+          <div class="notification__product-img">
+            <img :src=currentProduct.image alt="Product" width="60">
+          </div>
+          <div class="notification__product-info">
+            <h1 class="notification__product-title">
+              {{ currentProduct.title }}
+            </h1>
+            <p class="notification__product-quantity">
+              Quantity: {{ currentProduct.rating.count = 1 }}
+            </p>
+            <p class="notification__product-price">
+              {{ Math.round(currentProduct.price) }}$
+            </p>
+          </div>
+        </div>
+        <hr class="notification__hr">
+        <div class="notification__btns">
+          <div>
+            <MyButton @click="isNotification = false">Continue shopping</MyButton>
+          </div>
+          <div>
+            <RouterLink to="/cart">
+              <MyButton class="notification__btn">Into the basket</MyButton>
+            </RouterLink>
+          </div>
+        </div>
+      </div>
+    </MyNotification>
   </div>
 </template>
 
@@ -102,7 +141,7 @@
   }
 }
 
-.modal {
+  .modal {
     &__body {
       margin: auto;
       background: $white;
@@ -193,5 +232,88 @@
 
   .rotate {
     transform: rotate(180deg);
+  }
+
+  .notification {
+    &__body {
+      margin: auto;
+      background: $white;
+      max-width: 600px;
+      width: 100%;
+      padding: 50px;
+      position: relative;
+
+      @media screen and (max-width: $medium) {
+        padding: 30px;
+      }
+    }
+
+    &__title {
+      font-weight: $bold;
+      font-size: $f-size-title;
+      color: $black;
+    }
+
+    &__product {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 25px;
+      margin: 32px 0px;
+    }
+
+    &__product-title {
+      font-weight: $regular;
+      font-size: $f-size-main;
+      color: $black;
+      margin: 0;
+    }
+
+    &__product-quantity {
+      font-weight: $regular;
+      font-size: $f-size-main;
+      color: $black;
+      margin: 5px 0;
+    }
+
+    &__hr {
+      margin: 32px 0px;
+      outline: none;
+      border: 0;
+      border-bottom: 1px solid $grey-hr;
+    }
+
+    &__product-price {
+      font-weight: $bold;
+      font-size: $f-size-main;
+      color: $black;
+    }
+
+    &__btns {
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+    }
+
+    &__btn {
+      background: $black;
+      color: $white;
+      transition: .3s;
+    }
+
+    &__btn:hover {
+      background: $red;
+      color: $white;
+    }
+    
+    &__close {
+      background: none;
+      outline: none;
+      border: 0;
+      position: absolute;
+      right: 25px;
+      top: 25px;
+      cursor: pointer;
+    }
   }
 </style>
