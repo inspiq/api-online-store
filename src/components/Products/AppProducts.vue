@@ -92,7 +92,7 @@
         <hr class="notification__hr">
         <div class="notification__btns">
           <div>
-            <MyButton @click="isNotification = false">Continue shopping</MyButton>
+            <MyButton @click="isNotification = false" class="notification__btn-continue">Continue shopping</MyButton>
           </div>
           <div>
             <RouterLink to="/cart">
@@ -299,11 +299,21 @@
       background: $black;
       color: $white;
       transition: .3s;
+
+      @media screen and (max-width: $small) {
+        font-size: $f-size-btn-notification;
+      }
     }
 
     &__btn:hover {
       background: $red;
       color: $white;
+    }
+
+    &__btn-continue {
+      @media screen and (max-width: $small) {
+        font-size: $f-size-btn-notification;
+      }
     }
     
     &__close {
