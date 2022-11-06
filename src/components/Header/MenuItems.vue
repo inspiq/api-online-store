@@ -23,7 +23,7 @@
     setTimeout(() => {
       filteredProducts.value = products.value.filter((x) => x.category === cat)
       isLoading.value = false
-    }, 300);
+    }, 400);
     isLoading.value = true
   }
 </script>
