@@ -2,17 +2,22 @@
   import { ref } from 'vue';
   import AppContainer from '@/components/Container/AppContainer.vue'
   import MenuItems from './MenuItems.vue';
+  import { useStore } from '@/stores/store';
+  import { storeToRefs } from 'pinia';
 
   const menuOpen = ref(false)
+
+  const store = useStore()
+  const { getQuantityProducts } = storeToRefs(store)
 </script> 
 
 <template>
   <header class="header">
     <AppContainer>
       <div class="header__logo">
-        <a href="/">
+        <RouterLink to="/">
           <span>API.</span>
-        </a>
+        </RouterLink>
       </div>
       <nav class="nav">
         <ul class="nav__items">
@@ -24,6 +29,9 @@
           to="/cart"
         >
           <img src="@/assets/images/icons/fi_shopping-cart.png" alt="Shopping cart" width="24" height="24">
+          <div class="header__cart-quantity">
+            <span>{{ getQuantityProducts }}</span>
+          </div>
         </RouterLink>
         <a href="">
           <img src="@/assets/images/icons/fi_heart.png" alt="Favorite" width="24" height="24">
@@ -37,7 +45,7 @@
   <header class="header-small">
     <AppContainer>
       <div class="header-small__logo">
-        <a href="">
+        <a href="/">
           <img src="@/assets/images/logo/logo.png" alt="Logotype" width="32" height="30">
           <span>API.</span>
         </a>
@@ -64,13 +72,16 @@
             to="/cart"
           >
             <img src="@/assets/images/icons/fi_shopping-cart.png" alt="Shopping cart" width="24" height="24">
+            <div class="header-small__cart-quantity">
+              <span>{{ getQuantityProducts }}</span>
+            </div>
           </RouterLink>
-          <a href="">
+          <RouterLink to="">
             <img src="@/assets/images/icons/fi_heart.png" alt="Favorite" width="24" height="24">
-          </a>
-          <a href="">
+          </RouterLink>
+          <RouterLink to="">
             <img src="@/assets/images/icons/fi_user.png" alt="User" width="24" height="24">
-          </a>
+          </RouterLink>
         </div>
       </div>
     </AppContainer>
@@ -109,13 +120,31 @@
   &__logo > a > span {
     font-size: $f-size-medium;
     color: $black;
-    font-weight: $bold;
+    font-weight: $w-bold;
   }
 
   &__icons {
     gap: 32px;
     display: flex;
     flex-direction: row;
+    position: relative;
+  }
+
+  &__cart-quantity {
+    background: $lighten-grey;
+    width: 22px;
+    height: 22px;
+    border: 0px;
+    border-radius: 100%;
+    font-size: $f-size-quantity;
+    color: $black;
+    font-weight: $w-medium;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: -5px;
+    left: 15px;
   }
 }
 
@@ -178,7 +207,7 @@
   &__title > h3 {
     font-size: $f-size-title;
     color: $black;
-    font-weight: $bold;
+    font-weight: $w-bold;
   }
 
   &__btn-close > button {
@@ -203,7 +232,7 @@
   &__logo > a > span {
     font-size: $f-size-medium;
     color: $black;
-    font-weight: $bold;
+    font-weight: $w-bold;
   }
 
   &__icons {
@@ -211,6 +240,24 @@
     flex-direction: row;
     gap: 32px;
     margin-top: 50px;
+    position: relative;
+  }
+
+  &__cart-quantity {
+    background: $lighten-grey;
+    width: 22px;
+    height: 22px;
+    border: 0px;
+    border-radius: 50px;
+    font-size: $f-size-quantity;
+    color: $black;
+    font-weight: $w-medium;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: -5px;
+    left: 15px;
   }
 }
 

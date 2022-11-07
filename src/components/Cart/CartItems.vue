@@ -6,8 +6,8 @@
   import { storeToRefs } from 'pinia';
 
   type TProps = { item: Cart }
+
   const props = defineProps<TProps>();
-    
   const store = useStore()
   const { deleteEvent } = store
   const { cart } = storeToRefs(store)
@@ -93,7 +93,7 @@
 
   &__product-info h3 {
     color: $black;
-    font-weight: $regular;
+    font-weight: $w-regular;
     font-size: $f-size-title-product;
     margin-bottom: 5px;
 
@@ -104,7 +104,7 @@
 
   &__product-info p {
     color: $grey;
-    font-weight: $regular;
+    font-weight: $w-regular;
     font-size: $f-size-price-product;
   }
 
@@ -137,7 +137,7 @@
     border: none;
     color: $grey;
     font-size: $f-size-delete;
-    font-weight: $regular;
+    font-weight: $w-regular;
     cursor: pointer;
     color: $red;
   }

@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-  import { defineProps, defineEmits } from 'vue'
-
-  type TProps = { isShow: boolean }
-
-  defineProps<TProps>();
+  import { defineEmits } from 'vue'
 
   const emit = defineEmits(['close'])
 
@@ -13,7 +9,7 @@
 </script>
 
 <template>
-  <div class="modal" v-if="isShow" @click="hideModal()">
+  <div class="modal" @click="hideModal();">
     <slot />
   </div>
 </template>
@@ -27,7 +23,7 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 9999;
     display: flex;
     flex-direction: row;

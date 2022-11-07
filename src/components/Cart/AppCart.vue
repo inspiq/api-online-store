@@ -5,10 +5,19 @@
   import MyButton from '@/components/UI/MyButton.vue'
   import { useStore } from '@/stores/store'
   import { storeToRefs } from 'pinia'
+  import { useRouter } from 'vue-router';
 
   const store = useStore()
+  const { cart, getTotalPrice } = storeToRefs(store)
 
-  const { cart } = storeToRefs(store)
+  const router = useRouter()
+
+  function orderProcessing() {
+    router.push('/')
+    cart.value.splice(0, cart.value.length)
+
+    window.localStorage.setItem('cart', JSON.stringify(cart.value));
+  }
 </script>
 
 <template>
@@ -27,10 +36,10 @@
           <div class="cart__price-info">
             <div class="cart__total-price">
               <p>Sub total</p>
-              <p>{{ store.getTotalPrice }}$</p>
+              <p>{{ getTotalPrice }}$</p>
             </div>
             <div class="cart__delivery">
-              <template v-if="store.getTotalPrice < 100">
+              <template v-if="getTotalPrice < 100">
                 <p>Delivery paid</p>
                 <p>10$</p>
               </template>
@@ -40,9 +49,11 @@
               </template>
             </div>
             <MyHr />
-            <p>{{ store.getTotalPrice }}$</p>
+            <p>{{ getTotalPrice }}$</p>
             <div class="cart__btn">
-              <MyButton>
+              <MyButton
+                @click="orderProcessing()"
+              >
                 Proceed to checkout
               </MyButton>
             </div>
@@ -67,11 +78,12 @@
   }
 
   &__content-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 70px;
 
     @media screen and (max-width: $small) {
+      display: flex;
       flex-direction: column;
     }
   }
@@ -102,7 +114,7 @@
   &__price-info > p {
     color: $black;
     font-size: $f-size-main;
-    font-weight: $regular;
+    font-weight: $w-regular;
     margin-top: 24px;
     display: flex;
     justify-content: flex-end;
@@ -118,13 +130,13 @@
   &__total-price > p:nth-child(1) {
     color: $grey;
     font-size: $f-size-main;
-    font-weight: $regular;
+    font-weight: $w-regular;
   }
 
   &__total-price > p:nth-child(2) {
     color: $black;
     font-size: $f-size-main;
-    font-weight: $regular;
+    font-weight: $w-regular;
   }
 
   &__delivery {
@@ -136,7 +148,7 @@
   &__delivery > p:nth-child(1) {
     color: $grey;
     font-size: $f-size-main;
-    font-weight: $regular;
+    font-weight: $w-regular;
   }
 
   &__delivery > p:nth-child(2) {
@@ -146,7 +158,7 @@
   &__order-title {
     color: $dark-grey;
     font-size: $f-size-title-product;
-    font-weight: $regular;
+    font-weight: $w-regular;
     margin-bottom: 32px;
   }
 
@@ -161,7 +173,7 @@
   &__empty {
     color: $grey;
     font-size: $f-size-main;
-    font-weight: $regular;
+    font-weight: $w-regular;
   }
 
   &__btn {

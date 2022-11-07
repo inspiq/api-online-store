@@ -22,9 +22,10 @@ export const useStore = defineStore("store", {
   } as State),
   getters: {
     getTotalPrice(state) {
-      return state.cart.reduce((totalPrice, product) => {
-        return Math.round(totalPrice += product.price * product.rating.count)
-      }, 0)
+      return state.cart.reduce((totalPrice, product) => Math.round(totalPrice += product.price * product.rating.count), 0)
+    },
+    getQuantityProducts(state) {
+      return state.cart.reduce((totalQuantity, product) => totalQuantity += product.rating.count, 0)
     }
   },
   actions: {
@@ -42,12 +43,11 @@ export const useStore = defineStore("store", {
     },
     addProduct(currentProduct: Cart) {
       const found = this.cart.find(item => item.id === currentProduct.id);
-
       if (!found) {
         this.cart.push({...currentProduct, rating: {count: 1, rate: currentProduct.rating.rate}})
       } else {
         found.rating.count++
-      }
+      } 
       window.localStorage.setItem('cart', JSON.stringify(this.cart));
     },
     deleteEvent(id: number) {

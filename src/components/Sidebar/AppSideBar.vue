@@ -78,7 +78,7 @@
   &__title {
     margin: 32px 0px 16px 0px;
     font-size: $f-size-main;
-    font-weight: $regular;
+    font-weight: $w-regular;
     color: $black;
   }
 
