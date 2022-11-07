@@ -6,14 +6,10 @@
   function hideModal() {
     emit('close')
   }
-
-  function hideNotification() {
-    emit('close')
-  }
 </script>
 
 <template>
-  <div class="modal" @click="hideModal(); hideNotification();">
+  <div class="modal" @click="hideModal();">
     <slot />
   </div>
 </template>
