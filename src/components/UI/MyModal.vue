@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-  import { defineProps, defineEmits } from 'vue'
-
-  type TProps = { isShow: boolean }
-
-  defineProps<TProps>();
+  import { defineEmits } from 'vue'
 
   const emit = defineEmits(['close'])
 
   function hideModal() {
     emit('close')
   }
+
+  function hideNotification() {
+    emit('close')
+  }
 </script>
 
 <template>
-  <div class="modal" v-if="isShow" @click="hideModal()">
+  <div class="modal" @click="hideModal(); hideNotification();">
     <slot />
   </div>
 </template>

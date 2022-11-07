@@ -15,9 +15,9 @@
   <header class="header">
     <AppContainer>
       <div class="header__logo">
-        <a href="/">
+        <RouterLink to="/">
           <span>API.</span>
-        </a>
+        </RouterLink>
       </div>
       <nav class="nav">
         <ul class="nav__items">
@@ -76,12 +76,12 @@
               <span>{{ getQuantityProducts }}</span>
             </div>
           </RouterLink>
-          <a href="">
+          <RouterLink to="">
             <img src="@/assets/images/icons/fi_heart.png" alt="Favorite" width="24" height="24">
-          </a>
-          <a href="">
+          </RouterLink>
+          <RouterLink to="">
             <img src="@/assets/images/icons/fi_user.png" alt="User" width="24" height="24">
-          </a>
+          </RouterLink>
         </div>
       </div>
     </AppContainer>
@@ -120,7 +120,7 @@
   &__logo > a > span {
     font-size: $f-size-medium;
     color: $black;
-    font-weight: $bold;
+    font-weight: $w-bold;
   }
 
   &__icons {
@@ -138,7 +138,7 @@
     border-radius: 100%;
     font-size: $f-size-quantity;
     color: $black;
-    font-weight: $medium;
+    font-weight: $w-medium;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -207,7 +207,7 @@
   &__title > h3 {
     font-size: $f-size-title;
     color: $black;
-    font-weight: $bold;
+    font-weight: $w-bold;
   }
 
   &__btn-close > button {
@@ -232,7 +232,7 @@
   &__logo > a > span {
     font-size: $f-size-medium;
     color: $black;
-    font-weight: $bold;
+    font-weight: $w-bold;
   }
 
   &__icons {
@@ -251,7 +251,7 @@
     border-radius: 50px;
     font-size: $f-size-quantity;
     color: $black;
-    font-weight: $medium;
+    font-weight: $w-medium;
     display: flex;
     justify-content: center;
     align-items: center;

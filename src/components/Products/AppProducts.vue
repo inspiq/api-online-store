@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import AppProduct from './AppProduct.vue';
   import MyModal from '@/components/UI/MyModal.vue';
-  import MyNotification from '@/components/UI/MyNotification.vue';
   import MyButton from '@/components/UI/MyButton.vue'
   import { ref, onMounted } from 'vue'
   import { useStore } from '@/stores/store'
@@ -32,8 +31,8 @@
       />
     </ul>
     <MyModal
-      :isShow="isShow"
       @close="isShow = false"
+      v-if="isShow"
     >
       <div @click.stop class="modal__body">
         <button class="modal__close" @click="isShow = false">
@@ -64,11 +63,11 @@
         </div>
       </div>
     </MyModal>
-    <MyNotification
-      :isNotification="isNotification"
+    <MyModal
       @close="isNotification = false"
+      v-if="isNotification"
     >
-      <div @click.stop class="notification__body">
+    <div @click.stop class="notification__body">
         <button class="notification__close" @click="isNotification = false">
           <img src="@/assets/images/icons/close.png" alt="Close" width="16">
         </button>
@@ -101,7 +100,7 @@
           </div>
         </div>
       </div>
-    </MyNotification>
+    </MyModal>
   </div>
 </template>
 
@@ -131,7 +130,7 @@
 
   &__title {
     font-size: $f-size-title;
-    font-weight: $bold;
+    font-weight: $w-bold;
     margin: $margin-main;
 
     @media screen and (max-width: $small) {
@@ -156,7 +155,7 @@
     }
 
     &__title {
-      font-weight: $bold;
+      font-weight: $w-bold;
       font-size: $f-size-medium;
       color: $black;
       margin: 0px 0px 24px 0px;
@@ -167,7 +166,7 @@
     }
 
     &__price {
-      font-weight: $regular;
+      font-weight: $w-regular;
       font-size: $f-size-medium;
       color: $grey;
       font-size: $f-size-title-product;
@@ -189,7 +188,7 @@
 
     &__description > p {
       font-size: $f-size-main;
-      font-weight: $regular;
+      font-weight: $w-regular;
       color: $grey;
       margin-top: 18px;
     }
@@ -208,7 +207,7 @@
 
     &__category {
       font-size: $f-size-main;
-      font-weight: $regular;
+      font-weight: $w-regular;
       color: $grey;
       margin-bottom: 10px;
     }
@@ -249,7 +248,7 @@
     }
 
     &__title {
-      font-weight: $bold;
+      font-weight: $w-bold;
       font-size: $f-size-title;
       color: $black;
     }
@@ -263,14 +262,14 @@
     }
 
     &__product-title {
-      font-weight: $regular;
+      font-weight: $w-regular;
       font-size: $f-size-main;
       color: $black;
       margin: 0;
     }
 
     &__product-quantity {
-      font-weight: $regular;
+      font-weight: $w-regular;
       font-size: $f-size-main;
       color: $black;
       margin: 5px 0;
@@ -284,7 +283,7 @@
     }
 
     &__product-price {
-      font-weight: $bold;
+      font-weight: $w-bold;
       font-size: $f-size-main;
       color: $black;
     }

@@ -114,7 +114,7 @@
   &__price-info > p {
     color: $black;
     font-size: $f-size-main;
-    font-weight: $regular;
+    font-weight: $w-regular;
     margin-top: 24px;
     display: flex;
     justify-content: flex-end;
@@ -130,13 +130,13 @@
   &__total-price > p:nth-child(1) {
     color: $grey;
     font-size: $f-size-main;
-    font-weight: $regular;
+    font-weight: $w-regular;
   }
 
   &__total-price > p:nth-child(2) {
     color: $black;
     font-size: $f-size-main;
-    font-weight: $regular;
+    font-weight: $w-regular;
   }
 
   &__delivery {
@@ -148,7 +148,7 @@
   &__delivery > p:nth-child(1) {
     color: $grey;
     font-size: $f-size-main;
-    font-weight: $regular;
+    font-weight: $w-regular;
   }
 
   &__delivery > p:nth-child(2) {
@@ -158,7 +158,7 @@
   &__order-title {
     color: $dark-grey;
     font-size: $f-size-title-product;
-    font-weight: $regular;
+    font-weight: $w-regular;
     margin-bottom: 32px;
   }
 
@@ -173,7 +173,7 @@
   &__empty {
     color: $grey;
     font-size: $f-size-main;
-    font-weight: $regular;
+    font-weight: $w-regular;
   }
 
   &__btn {

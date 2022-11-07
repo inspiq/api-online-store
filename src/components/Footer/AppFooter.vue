@@ -69,19 +69,19 @@
 
   &__support > p {
     color: $grey;
-    font-weight: $regular;
+    font-weight: $w-regular;
     font-size: $f-size-main;
   }
 
   &__contacts > p {
     color: $grey;
-    font-weight: $regular;
+    font-weight: $w-regular;
     font-size: $f-size-main;
   }
 
   &__copyright {
     color: $grey;
-    font-weight: $regular;
+    font-weight: $w-regular;
     font-size: $f-size-main;
   }
 

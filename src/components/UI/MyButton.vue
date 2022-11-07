@@ -16,7 +16,7 @@
   outline: none;
   border: none;
   color: $white;
-  font-weight: $bold;
+  font-weight: $w-bold;
   font-size: $f-size-main;
   cursor: pointer;
 }

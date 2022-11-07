@@ -45,14 +45,14 @@
   }
 
   &__title {
-    font-weight: $regular;
+    font-weight: $w-regular;
     font-size: $f-size-title-product;
     color: $black;
     margin-top: 24px;
   }
 
   &__price {
-    font-weight: $regular;
+    font-weight: $w-regular;
     color: $grey;
     font-size: $f-size-price-product;
     margin-top: 8px;

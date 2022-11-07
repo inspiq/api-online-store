@@ -45,7 +45,7 @@
     position: relative;
     padding: 4px 0px;
     font-size: $f-size-menu;
-    font-weight: $regular;
+    font-weight: $w-regular;
     color: $black;
     background: none;
     outline: none;
